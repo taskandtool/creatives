@@ -2,6 +2,18 @@
   "schema_version": 1,
   "slug": "creatives",
   "version": "0.1.0",
+  "needs": {
+    "connections": [
+      {
+        "provider": "openrouter",
+        "why": "Generate pictures for creatives"
+      },
+      {
+        "provider": "apify",
+        "why": "Research what competitors are running"
+      }
+    ]
+  },
   "suggestions": [
     {
       "id": "mirror-my-brain-s-brand",
