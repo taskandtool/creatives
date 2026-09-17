@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row">
+      {{#logo}}<img class="mark" src="{{{logo}}}" alt="">{{/logo}}
+      {{^logo}}<span class="mark-text">{{business}}</span>{{/logo}}
+    </div>
+    <h1 class="headline" style="font-size: calc(var(--headline) * 0.85)">{{headline}}</h1>
+    <div class="stack" style="gap: 0; flex:1">
+      {{#items}}
+      <div class="row" style="padding: calc(22px * var(--scale)) 0; border-top: var(--rule) solid var(--line); align-items: flex-start">
+        <span class="label" style="color: var(--accent); min-width: 2.2em">{{n}}</span>
+        <p class="body">{{text}}</p>
+      </div>
+      {{/items}}
+    </div>
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

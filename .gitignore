@@ -1,0 +1,31 @@
+# Never commit credentials or local state. Task & Tool delivers env to a
+# machine at install time; nothing in this repo should ever hold a key.
+.env
+.env.*
+!.env.template
+!.env.example
+.envrc
+*.pem
+*.key
+
+# Tool noise
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# The template's own dependencies are installed on the machine, never here
+node_modules/
+
+# Rendered output and working material belong to the owner's machine. The
+# template ships the folders and their READMEs, never anyone's creatives.
+creatives/template/creatives/generated/
+creatives/template/creatives/approved/
+creatives/template/creatives/scheduled/
+creatives/template/creatives/posted/
+creatives/template/campaigns/*/
+creatives/template/raw/
+creatives/template/uploads/
+creatives/template/media/
+creatives/template/swipe/
+creatives/template/inbox/

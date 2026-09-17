@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row">
+      {{#logo}}<img class="mark" src="{{{logo}}}" alt="">{{/logo}}
+      {{^logo}}<span class="mark-text">{{business}}</span>{{/logo}}
+    </div>
+    <h1 class="headline" style="font-size: calc(var(--headline) * 0.85)">{{headline}}</h1>
+    <div class="stack" style="gap: calc(18px * var(--scale)); flex:1">
+      {{#items}}
+      <div class="row" style="align-items: flex-start">
+        <span class="frame" style="width: 1.1em; height: 1.1em; font-size: var(--body); flex: none; display:flex; align-items:center; justify-content:center; border-radius: calc(8px * var(--scale)); border-color: var(--ink-2); {{#done}}background: var(--accent); border-color: var(--accent); color: var(--accent-ink);{{/done}}">{{#done}}✓{{/done}}</span>
+        <p class="body">{{text}}</p>
+      </div>
+      {{/items}}
+    </div>
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

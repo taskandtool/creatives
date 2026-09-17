@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card dark" style="width:{{width}}px;height:{{height}}px;padding:0">
+    <img class="photo" src="{{{image}}}" alt="">
+    {{#caption}}<p class="body" style="position:absolute; left: var(--margin); bottom: var(--margin); max-width: 70%; background: rgb(255 255 255 / 0.92); color: #111; padding: 0.5em 0.8em; border-radius: calc(16px * var(--scale))">{{caption}}</p>{{/caption}}
+</main>
+</body>
+</html>

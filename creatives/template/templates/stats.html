@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row">
+      {{#logo}}<img class="mark" src="{{{logo}}}" alt="">{{/logo}}
+      {{^logo}}<span class="mark-text">{{business}}</span>{{/logo}}
+    </div>
+    <h1 class="headline" style="font-size: calc(var(--headline) * 0.7)">{{headline}}</h1>
+    <div class="spacer"></div>
+    <div class="stack" style="gap: calc(36px * var(--scale))">
+      {{#stats}}
+      <div>
+        <p class="giant" style="font-size: calc(var(--giant) * 0.6)">{{value}}</p>
+        <p class="body">{{label}}</p>
+      </div>
+      {{/stats}}
+    </div>
+    <div class="spacer"></div>
+    {{#source}}<p class="label" style="opacity: 0.7">{{source}}</p>{{/source}}
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

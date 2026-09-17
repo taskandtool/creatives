@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card" style="width:{{width}}px;height:{{height}}px; justify-content:center; background: var(--ground-dark); color: var(--ink-on-dark)">
+    {{#thread}}
+    <div class="stack" style="gap: calc(16px * var(--scale)); width: 82%; align-self: center">
+      {{#messages}}
+      <div style="display:flex; {{#mine}}justify-content:flex-end{{/mine}}">
+        <p class="body" style="max-width: 78%; padding: 0.55em 0.9em; border-radius: calc(36px * var(--scale)); color: {{#mine}}#fff; background: #2f7cf6{{/mine}}{{^mine}}#111; background: #e9e9ec{{/mine}}">{{text}}</p>
+      </div>
+      {{/messages}}
+    </div>
+    {{/thread}}
+    {{#notification}}
+    <div style="width: 84%; align-self: center; background: rgb(255 255 255 / 0.92); color: #111; border-radius: calc(40px * var(--scale)); padding: calc(36px * var(--scale)) calc(40px * var(--scale))">
+      <div class="row" style="justify-content: space-between"><span class="label" style="color:#555">{{app}}</span><span class="label" style="color:#555">{{when}}</span></div>
+      <p class="body" style="font-weight: 600; margin-top: 0.3em; color: #111">{{title}}</p>
+      <p class="body" style="color: #333">{{text}}</p>
+    </div>
+    {{/notification}}
+    {{#review}}
+    <div style="width: 84%; align-self: center; background: #fff; color: #111; border-radius: calc(32px * var(--scale)); padding: calc(44px * var(--scale))">
+      <p class="body" style="color: #f5a623; letter-spacing: 0.1em">{{stars}}</p>
+      <p class="body" style="color:#111; margin-top: 0.4em">{{text}}</p>
+      <p class="label" style="color:#555; margin-top: 0.8em">{{who}} · {{when}}</p>
+    </div>
+    {{/review}}
+    {{#comment}}
+    <div style="width: 86%; align-self: center; background: #fff; color: #111; border-radius: calc(28px * var(--scale)); padding: calc(36px * var(--scale))">
+      <p class="label" style="color:#555">{{who}}</p>
+      <p class="body" style="color:#111; margin-top: 0.3em">{{text}}</p>
+      <div style="margin-top: calc(24px * var(--scale)); padding-left: calc(28px * var(--scale)); border-left: calc(4px * var(--scale)) solid var(--accent)">
+        <p class="label" style="color: var(--accent)">{{business}} replied</p>
+        <p class="body" style="color:#111; margin-top: 0.3em">{{reply}}</p>
+      </div>
+    </div>
+    {{/comment}}
+    {{#app}}
+    <div style="width: 78%; align-self: center; background: #fff; color: #111; border-radius: calc(40px * var(--scale)); padding: calc(40px * var(--scale)); border: calc(10px * var(--scale)) solid #222">
+      <p class="label" style="color:#555">{{title}}</p>
+      {{#rows}}<div class="row" style="justify-content: space-between; padding: calc(18px * var(--scale)) 0; border-bottom: calc(2px * var(--scale)) solid #eee"><span class="body" style="color:#111">{{left}}</span><span class="body" style="color:#111; font-weight: 600">{{right}}</span></div>{{/rows}}
+      {{#footer}}<p class="body" style="color: var(--accent); margin-top: 0.8em; font-weight: 600">{{footer}}</p>{{/footer}}
+    </div>
+    {{/app}}
+    <p class="label" style="position:absolute; left: var(--margin); bottom: var(--margin)">{{business}}</p>
+</main>
+</body>
+</html>

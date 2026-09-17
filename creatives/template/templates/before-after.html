@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row">
+      {{#logo}}<img class="mark" src="{{{logo}}}" alt="">{{/logo}}
+      {{^logo}}<span class="mark-text">{{business}}</span>{{/logo}}
+    </div>
+    <div class="{{#stacked}}stack{{/stacked}}{{^stacked}}row{{/stacked}}" style="flex:1; align-items: stretch; gap: calc(24px * var(--scale))">
+      <div class="frame" style="flex:1; position:relative; min-height: 0">
+        <img class="photo" src="{{{before_image}}}" alt="">
+        <span class="label" style="position:absolute; left: calc(24px * var(--scale)); top: calc(24px * var(--scale)); background: var(--scrim); color: var(--ink-on-dark); padding: 0.4em 0.8em; border-radius: var(--pill)">{{before_label}}</span>
+      </div>
+      <div class="frame" style="flex:1; position:relative; min-height: 0">
+        <img class="photo" src="{{{after_image}}}" alt="">
+        <span class="label" style="position:absolute; left: calc(24px * var(--scale)); top: calc(24px * var(--scale)); background: var(--accent); color: var(--accent-ink); padding: 0.4em 0.8em; border-radius: var(--pill)">{{after_label}}</span>
+      </div>
+    </div>
+    <h1 class="headline" style="font-size: calc(var(--headline) * 0.7)">{{headline}}</h1>
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

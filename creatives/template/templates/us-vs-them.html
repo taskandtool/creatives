@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row">
+      {{#logo}}<img class="mark" src="{{{logo}}}" alt="">{{/logo}}
+      {{^logo}}<span class="mark-text">{{business}}</span>{{/logo}}
+    </div>
+    <h1 class="headline" style="font-size: calc(var(--headline) * 0.8)">{{headline}}</h1>
+    <div class="frame" style="flex:1; display:grid; grid-template-columns: 1fr 1fr; align-content:start">
+      <div class="label" style="padding: calc(24px * var(--scale)); border-bottom: var(--rule) solid var(--line); border-right: var(--rule) solid var(--line)">{{left_label}}</div>
+      <div class="label" style="padding: calc(24px * var(--scale)); border-bottom: var(--rule) solid var(--line); color: var(--accent)">{{right_label}}</div>
+      {{#rows}}
+      <div class="body" style="padding: calc(24px * var(--scale)); border-bottom: var(--rule) solid var(--line); border-right: var(--rule) solid var(--line)"><span class="muted">✗</span> {{left}}</div>
+      <div class="body" style="padding: calc(24px * var(--scale)); border-bottom: var(--rule) solid var(--line); color: inherit"><span class="tick">✓</span> {{right}}</div>
+      {{/rows}}
+    </div>
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

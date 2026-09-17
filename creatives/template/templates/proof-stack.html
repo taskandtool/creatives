@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row">
+      {{#logo}}<img class="mark" src="{{{logo}}}" alt="">{{/logo}}
+      {{^logo}}<span class="mark-text">{{business}}</span>{{/logo}}
+    </div>
+    <div class="row" style="align-items: baseline; gap: calc(20px * var(--scale))">
+      <span class="giant" style="font-size: calc(var(--giant) * 0.55)">{{rating}}</span>
+      <span class="body">{{count}}</span>
+    </div>
+    <p class="label">{{source}}</p>
+    <div class="spacer"></div>
+    {{#quotes}}
+    <div class="frame" style="padding: calc(28px * var(--scale))">
+      <p class="body" style="color: inherit">“{{text}}”</p>
+      <p class="label" style="margin-top: 0.6em; opacity: 0.7">{{who}}</p>
+    </div>
+    {{/quotes}}
+    <div class="spacer"></div>
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

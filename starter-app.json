@@ -1,0 +1,117 @@
+{
+  "name": "Creatives",
+  "blurb": "Ad creatives and social posts for the business, made on its own machine and approved before anything is posted: a brief, angles, twenty-five proven ad formats rendered in the brand's colours and fonts, organic posts per platform, a board from generated to posted that a client portal or a publisher can read.",
+  "order": 2,
+  "version": "0.1.0",
+  "directive": "The Creatives Starter App is installed. The app in ~/app makes ad creatives and social posts and never posts them: brand/ (the brand as markdown notes; BRAND.md) and public/ (the fact notes; FACTS.md) are the website's shapes so a Company Brain or a website in this project can own them by mirror; DESIGN.md is the design contract for anything rendered (tokens in templates/brand.css); CREATIVES.md is what a creative is on disk and how it moves through creatives/generated, approved, scheduled, posted; specs/<platform>.md are the sizes, limits and policy notes with a last_verified date; campaigns/<slug>/ holds a brief, angles, claims and results; scripts/ are the tools (new, render, imagegen, resize, qa, check, status, carousel, video, fonts). Its skills are in ~/app/.claude/skills: creatives (the shape and the loop), sources (the notes, own or mirrored), brief, angles, static-ad, carousel, video-script, social-post, research, review, results. Start by reading .claude/skills/creatives/SKILL.md and ~/app/CREATIVES.md, confirm the tools (obscura, Pillow, python3 scripts/imagegen.py --check), then ask the owner two things: is there a Company Brain or a website in this project (tools.taskandtool.project_apps; if so, the owner mirrors its brand and public folders onto this app's brand and public from this app's Settings, and the sources skill takes it from there), and what the first campaign is for (the brief skill). Do not invent facts, reviews, counts or prices; every claim on a creative comes from campaigns/<slug>/claims.md with a source. Show creatives by attaching the rendered files to your reply (attach_files in tools/taskandtool.py), never by describing them. An image model key is asked for through request_connection when a creative needs a picture, never in chat.",
+  "suggestions": [
+    {
+      "label": "Mirror my brain's brand and facts here",
+      "prompt": "This project has a Company Brain. Check with project_apps that it is there, then walk me through mirroring, from this app's Settings, its brain/brand folder onto brand and brain/public onto public (read-only copies). Once they have synced, follow 'Updating from the brand' in DESIGN.md (templates/brand.css, the fonts with scripts/fonts.py --from-brand, the logo), run python3 scripts/qa.py --tokens, and tell me what the notes hold and what they still lack.",
+      "when": [
+        {
+          "sibling": "brain",
+          "is": "present"
+        },
+        {
+          "path": "brand/_mirror.md",
+          "is": "missing"
+        }
+      ]
+    },
+    {
+      "label": "Set up the brand from my website",
+      "prompt": "Set up the brand and the facts this app makes creatives from, with the sources skill: crawl my site with tt-crawl into raw/web with styles and screenshots, write brand/ (visual identity as hex, the voice card and the fingerprint with quoted sentences, positioning, audience, do and don't) and public/ (business, services, proof, faq, team) citing the raw files, then set templates/brand.css and the fonts from them and run python3 scripts/qa.py --tokens. Tell me what you could not find. My site is ",
+      "when": [
+        {
+          "sibling": "brain",
+          "is": "missing"
+        },
+        {
+          "path": "brand/visual-identity.md",
+          "is": "unfilled"
+        }
+      ]
+    },
+    {
+      "label": "Tell you about the business",
+      "prompt": "I have no website to read. Ask me, in one message, what you need to fill brand/ and public/ (what we do, for whom, what makes us different, our colours and fonts if we have them, our real reviews, our contact details), write my answers to raw/transcripts first in my words, then into the notes with the sources skill, and set templates/brand.css from them. Here is what we do: ",
+      "when": [
+        {
+          "sibling": "brain",
+          "is": "missing"
+        },
+        {
+          "path": "brand/positioning.md",
+          "is": "unfilled"
+        }
+      ]
+    },
+    {
+      "label": "Write the first brief",
+      "prompt": "Write the campaign brief with me using the brief skill: draft every field you can from the notes in brand/ and public/, ask me only what they cannot answer, in one message, then write campaigns/<slug>/brief.md from briefs/_template.md, set campaigns/CURRENT, and read the one-sentence message back to me. The campaign is for ",
+      "when": [
+        {
+          "path": "brand/positioning.md",
+          "is": "present"
+        },
+        {
+          "path": "campaigns/CURRENT",
+          "is": "missing"
+        }
+      ]
+    },
+    {
+      "label": "Choose the angles",
+      "prompt": "From the agreed brief in campaigns/CURRENT, do the angles skill: write claims.md (every fact the campaign may state, with its source note), five angles from the five families, the three to make first and why, and the 3×3 table of angle × format with the template for each. Show me the table in one message and ask which three to make.",
+      "when": [
+        {
+          "path": "campaigns/CURRENT",
+          "is": "present"
+        }
+      ]
+    },
+    {
+      "label": "Make the first three statics",
+      "prompt": "Make the first three static ads from campaigns/<slug>/angles.md with the static-ad skill: one per angle in the format that shows it best, real claims only, rendered with scripts/render.py, resized with scripts/resize.py, passing scripts/qa.py and scripts/check.py. Attach the three masters to your reply with one line each and ask me which to approve or what to change. If a format needs a picture and no image model is connected, make the formats that need none first and ask me for a key with request_connection.",
+      "when": [
+        {
+          "path": "campaigns/CURRENT",
+          "is": "present"
+        }
+      ]
+    },
+    {
+      "label": "Write this week's posts",
+      "prompt": "Write this week's organic posts with the social-post skill from one idea I give you: an Instagram carousel, a Reel or TikTok script, a LinkedIn post in my voice, a Facebook photo post with a question, and a Google Business Profile update, each its own creative on the board, each rewritten for its platform, real facts only, no links in the body where the platform punishes them. Attach the pictures and paste each caption as a block. The idea is: "
+    },
+    {
+      "label": "What competitors are running",
+      "prompt": "Research what my competitors are running with the research skill: ask me for an Apify connection with request_connection if this app has none, read the Meta and LinkedIn ad libraries for the three competitors I name (50 ads each, with a limit), save the swipe file under swipe/ with the winner score (days running, active, sibling variants, recurrence), and tell me the three angles that recur, the two formats that have run longest, and one thing nobody is saying. Competitors: "
+    },
+    {
+      "label": "What is waiting for approval",
+      "prompt": "Show me the board: run python3 scripts/status.py apply to take in any decisions from a portal, then python3 scripts/status.py list, attach the masters of everything in creatives/generated, and ask me, one line each, approve or change.",
+      "when": [
+        {
+          "path": "campaigns/CURRENT",
+          "is": "present"
+        }
+      ]
+    },
+    {
+      "label": "Record the results",
+      "prompt": "Record what the campaign did with the results skill: pull the last seven days at ad level from my ad account if a connection exists (list_connections), otherwise take the numbers I paste, write campaigns/<slug>/results.md against each creative's angle, format and hook, compute hook rate, hold rate, CTR and cost per result, and tell me the one variable to change next and the next batch as rows in angles.md. Here are the numbers: ",
+      "when": [
+        {
+          "path": "campaigns/CURRENT",
+          "is": "present"
+        }
+      ]
+    },
+    {
+      "label": "Re-verify the platform specs",
+      "prompt": "One or more sheets in specs/ are more than 90 days old (python3 scripts/check.py says which). Re-verify each against the platform's own help pages with the browse skill or a fetch, correct any number that changed, update last_verified and sources, and tell me what changed."
+    }
+  ]
+}

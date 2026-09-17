@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card accent-ground stack" style="width:{{width}}px;height:{{height}}px;{{#ground}}background:{{ground}};{{/ground}}">
+    <div class="row" style="justify-content: space-between">
+      <span class="label">{{business}}</span>
+      {{#label}}<span class="label">{{label}}</span>{{/label}}
+    </div>
+    <div class="frame" style="flex:1; border: 0; background: transparent; display:flex; align-items:center; justify-content:center; min-height:0">
+      <img src="{{{image}}}" alt="" style="max-width: 100%; max-height: 100%; object-fit: contain">
+    </div>
+    <h1 class="headline" style="font-size: calc(var(--headline) * 0.75)">{{headline}}</h1>
+    {{#cta}}<span class="cta" style="background: var(--ground); color: var(--ink)">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>

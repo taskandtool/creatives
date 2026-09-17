@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card dark" style="width:{{width}}px;height:{{height}}px;padding:0">
+    <img class="photo" src="{{{image}}}" alt="">
+    <div class="band stack">
+      <h1 class="headline">{{headline}}</h1>
+      {{#body}}<p class="body" style="max-width: 24em">{{body}}</p>{{/body}}
+      <div class="row" style="justify-content: space-between">
+        {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+        <span class="label">{{business}}</span>
+      </div>
+    </div>
+</main>
+</body>
+</html>

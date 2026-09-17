@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card" style="width:{{width}}px;height:{{height}}px; align-items:center; justify-content:center; background: var(--ground-dark)">
+    <div style="background: var(--paper); color: #1b1608; width: 72%; padding: calc(64px * var(--scale)); transform: rotate(-2deg); box-shadow: 0 calc(18px * var(--scale)) calc(40px * var(--scale)) rgb(0 0 0 / 0.35)">
+      <p class="headline" style="font-family: var(--font-body); font-weight: 500; font-size: calc(var(--headline) * 0.62); line-height: 1.2; letter-spacing: 0">{{text}}</p>
+      {{#signoff}}<p class="body" style="margin-top: 1em; color: inherit; opacity: 0.75">{{signoff}}</p>{{/signoff}}
+    </div>
+    <p class="label" style="position:absolute; left: var(--margin); bottom: var(--margin); color: var(--ink-on-dark)">{{business}}</p>
+</main>
+</body>
+</html>

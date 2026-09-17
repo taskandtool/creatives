@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{id}}</title>
+<style>{{{css}}}</style>
+</head>
+<body>
+<main class="card {{tone}} stack" style="width:{{width}}px;height:{{height}}px">
+    <div class="row" style="justify-content: space-between">
+      <span class="label">{{business}}</span>
+      {{#headline}}<span class="label">{{headline}}</span>{{/headline}}
+    </div>
+    <div style="flex:1; display:grid; grid-template-columns: repeat({{columns}}, 1fr); gap: calc(16px * var(--scale)); min-height: 0">
+      {{#cells}}
+      <div class="frame" style="position: relative; min-height: 0">
+        {{#image}}<img class="photo" src="{{{image}}}" alt="">{{/image}}
+        {{#text}}<p class="body" style="position:absolute; left: calc(16px * var(--scale)); right: calc(16px * var(--scale)); bottom: calc(16px * var(--scale)); background: var(--scrim); color: var(--ink-on-dark); padding: 0.4em 0.6em; border-radius: calc(12px * var(--scale)); font-size: calc(var(--body) * 0.8)">{{text}}</p>{{/text}}
+      </div>
+      {{/cells}}
+    </div>
+    {{#cta}}<span class="cta">{{cta}}</span>{{/cta}}
+</main>
+</body>
+</html>
