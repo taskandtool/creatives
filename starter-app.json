@@ -16,6 +16,12 @@
       }
     ]
   },
+  "ready": {
+    "paths": [
+      "CREATIVES.md",
+      "scripts"
+    ]
+  },
   "suggestions": [
     {
       "id": "mirror-my-brain-s-brand",
