@@ -6,10 +6,12 @@
     "connections": [
       {
         "provider": "openrouter",
+        "strength": "suggested",
         "why": "Generate pictures for creatives"
       },
       {
         "provider": "apify",
+        "strength": "suggested",
         "why": "Research what competitors are running"
       }
     ]
