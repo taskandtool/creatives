@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
-# Creatives Starter App setup. Task & Tool runs this in ~/app when the
-# Starter App is installed, and again whenever the machine is replaced.
-# Safe to re-run any time:
+# Creatives Starter App setup. Task & Tool runs this in ~/app after the
+# repository is cloned onto the machine, and again whenever the machine is
+# replaced. Safe to re-run any time:
 #
-#     bash ~/app/.claude/skills/creatives/setup.sh
+#     bash ~/app/.taskandtool/setup.sh
 #
-# What it does, each step skipped when already done:
-#   1. seeds the app from the template (only into an empty app directory)
-#   2. initialises git and makes the first commit when there is no history
-#   3. installs the Python tools the scripts use (Pillow, requests,
+# The app's own files are not this script's business: they arrive with the
+# clone. What it does, each step skipped when already done:
+#   1. makes sure the working copy is a git repo with a commit in it
+#   2. installs the Python tools the scripts use (Pillow, requests,
 #      fontTools for the caption fonts) and tt-crawl (the site reader the
 #      sources skill uses). faster-whisper, for timing captions to a voice
 #      track, is not installed here: it is a large download and only some
 #      apps need it, so captions.py says how when it is asked for.
-#   4. installs the Obscura headless browser (the renderer behind
+#   3. installs the Obscura headless browser (the renderer behind
 #      scripts/render.py; the same one the brain and the website use)
-#   5. reports what is and is not available (ffmpeg for video, an image
+#   4. reports what is and is not available (ffmpeg for video, an image
 #      model key)
 set -euo pipefail
 
-SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEMPLATE="$SKILL_DIR/template"
 APP="$(pwd)"
 OBSCURA_VERSION="${OBSCURA_VERSION:-v0.2.2}"
 OBSCURA_REPO="https://github.com/h4ckf0r0day/obscura"
@@ -28,16 +26,8 @@ CRAWLER_REF="${CRAWLER_REF:-v0.1.3}"
 
 echo "== creatives starter app: setup in $APP"
 
-# 1. Seed. Only an app with nothing in it gets the template.
-if [ ! -f CREATIVES.md ] && [ ! -f package.json ] && [ ! -d src ] && [ ! -f index.html ]; then
-  echo "== seeding the app from the template"
-  (cd "$TEMPLATE" && tar --exclude=__pycache__ -cf - .) | tar -xf - -C "$APP"
-  [ -f _gitignore ] && mv -f _gitignore .gitignore
-else
-  echo "== app already holds a project; not seeding (template: $TEMPLATE)"
-fi
-
-# 2. Git: the app is the owner's repo from the first minute.
+# 1. Git: the app is the owner's repo from the first minute. A clone already
+# is one; a working copy written in some other way is made one here.
 if [ ! -d .git ]; then
   git init -q
 fi
@@ -48,7 +38,7 @@ if ! git rev-parse --verify HEAD >/dev/null 2>&1 && [ -f CREATIVES.md ]; then
       commit -q -m "Creatives Starter App" && echo "== first commit made"
 fi
 
-# 3. Python tools.
+# 2. Python tools.
 echo "== python tools (Pillow, requests) + tt-crawl $CRAWLER_REF"
 python3 -m pip install --quiet --upgrade Pillow requests 2>&1 | tail -1 || true
 # fontTools converts a fetched woff2 into the TTF libass needs for video captions
@@ -63,7 +53,7 @@ if ! command -v tt-crawl >/dev/null 2>&1; then
   done
 fi
 
-# 4. Obscura: the renderer. System-wide when we can, else ~/.local/bin.
+# 3. Obscura: the renderer. System-wide when we can, else ~/.local/bin.
 if [ -w /usr/local/bin ]; then
   BIN=/usr/local/bin
 elif command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
@@ -99,7 +89,7 @@ else
 fi
 "$BIN/obscura" --version 2>/dev/null || true
 
-# 5. ffmpeg, for the slideshow cuts (scripts/video.py): a static build into
+# 4. ffmpeg, for the slideshow cuts (scripts/video.py): a static build into
 # the same bin, when the machine has none. About 80 MB, once.
 if command -v ffmpeg >/dev/null 2>&1; then
   echo "== ffmpeg: $(ffmpeg -version 2>/dev/null | head -1 | cut -d' ' -f1-3)"

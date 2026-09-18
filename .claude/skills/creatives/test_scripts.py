@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Tests for the creatives scripts against a copy of the template, with a
-fake obscura on the PATH (the real one is Linux-only; the live check runs
-it). Standard library + Pillow.
+"""Tests for the creatives scripts against a copy of the app, with a fake
+obscura on the PATH (the real one is Linux-only; the live check runs it).
+Standard library + Pillow.
 
-    python3 creatives/test_scripts.py
+    python3 .claude/skills/creatives/test_scripts.py
 """
 
 import json
@@ -17,7 +17,8 @@ import tempfile
 import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-TEMPLATE = os.path.join(HERE, "template")
+# The repository root is the app: the scripts under test are ~/app/scripts.
+TEMPLATE = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 sys.path.insert(0, os.path.join(TEMPLATE, "scripts"))
 import common  # noqa: E402
 

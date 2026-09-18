@@ -148,7 +148,7 @@ def render_one(app, d, size=None, template=None, dpr=2, out="master.png", html_o
 
     binary = obscura_bin()
     if not binary:
-        die("obscura is not installed (bash .claude/skills/creatives/setup.sh installs it); render.html was written", 2)
+        die("obscura is not installed (bash .taskandtool/setup.sh installs it); render.html was written", 2)
     shot = os.path.join(d, f"{out}.raw.png")
     env = dict(os.environ, OBSCURA_SHOT_W=str(w * dpr), OBSCURA_SHOT_H=str(h * dpr))
     url = "file://" + os.path.abspath(html_path)

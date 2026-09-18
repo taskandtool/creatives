@@ -2,30 +2,36 @@
 # machine at install time; nothing in this repo should ever hold a key.
 .env
 .env.*
-!.env.template
 !.env.example
 .envrc
 *.pem
 *.key
 
+# Working material and rendered output are the owner's, made on their own
+# machine. The folders and the notes that explain them ship with the app;
+# nobody's creatives do.
+creatives/generated/*
+creatives/approved/*
+creatives/scheduled/*
+creatives/posted/*
+creatives/rejected/*
+campaigns/*/
+inbox/decisions/*
+media/clips/*
+media/logo/*
+media/photos/*
+raw/*
+swipe/*
+uploads/*
+*.raw.png
+render.html
+!**/.gitkeep
+!**/README.md
+!**/_notes.md
+
 # Tool noise
+node_modules/
 __pycache__/
 *.pyc
 .pytest_cache/
 .DS_Store
-
-# The template's own dependencies are installed on the machine, never here
-node_modules/
-
-# Rendered output and working material belong to the owner's machine. The
-# template ships the folders and their READMEs, never anyone's creatives.
-creatives/template/creatives/generated/
-creatives/template/creatives/approved/
-creatives/template/creatives/scheduled/
-creatives/template/creatives/posted/
-creatives/template/campaigns/*/
-creatives/template/raw/
-creatives/template/uploads/
-creatives/template/media/
-creatives/template/swipe/
-creatives/template/inbox/

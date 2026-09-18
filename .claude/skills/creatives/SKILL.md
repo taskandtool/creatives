@@ -16,13 +16,13 @@ skills are the crafts: `brief`, `angles`, `static-ad`, `carousel`,
 
 ## Setup on this machine
 
-`setup.sh` beside this file seeds the app from `template/` into an empty
-app directory, initialises git, installs Pillow and requests, the Obscura
-headless browser (the renderer), and `tt-crawl` (the site reader the
-`sources` skill uses). It is idempotent:
+`.taskandtool/setup.sh` installs Pillow and requests, the Obscura headless
+browser (the renderer), `tt-crawl` (the site reader the `sources` skill
+uses), and a static ffmpeg for video. The app's own files came with the
+clone. It is idempotent, so re-run it whenever a tool is missing:
 
 ```bash
-bash ${CLAUDE_SKILL_DIR}/setup.sh
+bash ~/app/.taskandtool/setup.sh
 ```
 
 Check the tools before the first render:

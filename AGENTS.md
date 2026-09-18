@@ -3,7 +3,12 @@
 Ad creatives and social posts for one business, made here and approved
 before anything is posted. Nothing is served; the outputs are files the
 owner reviews in chat, a client approves through a portal, and a publisher
-posts. The skills that know how to work on it are in `.claude/skills/`:
+posts.
+
+This repository *is* the app: the folders and scripts at the root, the
+skills in `.claude/skills/`, and `.taskandtool/setup.sh` for what the
+machine needs (Pillow, the Obscura renderer, tt-crawl, ffmpeg). All of it
+is the owner's to change. The skills:
 `creatives` (the shape, the loop, the scripts), `sources` (the brand and
 fact notes, own or mirrored), `brief`, `angles`, `static-ad`, `carousel`,
 `video-script`, `social-post`, `research`, `review`, `results`.
